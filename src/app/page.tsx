@@ -3,13 +3,15 @@ import { SignedIn, SignOutButton, SignedOut } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 import FlareAI from '@/components/ui/FlareAI'
+import About from '@/app/about/page'
+
 
 
 const Homepage = () => {
   return (
     <>
 
-          <div className=" absolute flex justify-end gap-4 right-6 top-4 z-50">
+        <div className=" absolute flex justify-end gap-4 right-6 top-4 z-50">
         <Button className="border-orange-600 border text-black bg-amber-500 p-2 rounded-md hover:bg-amber-600 hover:text-white transition-colors duration-300">
           <Link href="/sign-up">Sign Up</Link>
         </Button>
@@ -84,9 +86,7 @@ const Homepage = () => {
                 <Link href="https://forms.gle/bSuPAL1psKQ6tKdK8">Register</Link>
                </Button>
                </div>
-
-               
-
+               <About/>
       </>
   )
 }

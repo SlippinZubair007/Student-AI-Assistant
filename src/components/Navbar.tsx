@@ -44,7 +44,7 @@ const Navbar = () => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/sign-in" className="hover:text-black transition hover:bg-amber-500">About</Link>
+                <Link href="/about" className="hover:text-black transition hover:bg-amber-500">About</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
