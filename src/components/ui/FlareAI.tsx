@@ -3,15 +3,16 @@ import Image from 'next/image'
 
 const Header = () => {
   return (
-    <div className="absolute flex mt-2 right-0">
-      <Image
-      src="/FlareAI.png"
-      alt="Flare AI Assistant"
-      width={500}
-      height={60}
-      />
-
-    </div>
+    <div >
+        <Image
+          src="/FlareAI.png"
+          alt="Flare AI Assistant"
+          width={400}
+          height={60}
+          className="rounded-full shadow-lg"
+          style={{ width: '100%', height: 'auto' }}
+        />
+      </div>
   )
 }
 

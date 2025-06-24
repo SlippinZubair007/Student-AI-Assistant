@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ConvexClerkProvider from "@/providers/convexClerkProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,19 +27,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ConvexClerkProvider>
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar/>
-        <main className="pt-2 flex-grow">
+        <main className="pt-24 flex-grow">
           {children}
           </main>
         
         <Footer/>
       </body>
     </html>
-    </ClerkProvider>
+    </ConvexClerkProvider>
   );
 }
