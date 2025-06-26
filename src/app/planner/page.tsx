@@ -1,12 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 
 const Plannerpage = () => {
   const [bookmarkedDates, setBookmarkedDates] = useState<Date[]>([]);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  
+   useEffect(() => {
+    const stored = localStorage.getItem("bookmarkedDates");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const dates = parsed.map((d: string) => new Date(d));
+      setBookmarkedDates(dates);
+    }
+  }, []);
 
+  // Save to localStorage whenever bookmarks change
+  useEffect(() => {
+    const toStore = JSON.stringify(bookmarkedDates.map((d) => d.toISOString()));
+    localStorage.setItem("bookmarkedDates", toStore);
+  }, [bookmarkedDates]);
 
   const toggleBookmark = (date: Date | undefined) => {
   if (!date) return;
@@ -56,7 +70,7 @@ const Plannerpage = () => {
             bookmarked: bookmarkedDates,
             }}
            modifiersClassNames={{
-           bookmarked: "bg-yellow-400 text-black font-bold",
+           bookmarked: "bg-red-900 border border-black rounded-full text-black font-bold",
   }}
             className="rounded-lg [&_button:hover]:bg-amber-500 [&_button:hover]:text-white"
           />
