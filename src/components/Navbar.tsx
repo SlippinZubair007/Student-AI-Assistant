@@ -42,8 +42,8 @@ const Navbar = () => {
             {[
               { href: '/', label: 'Home' },
               { href: '/about', label: 'About' },
-              { href: '/sign-up', label: 'Assistance' },
-              { href: '/pricing', label: 'Planner' },
+              { href: '/FlareKull', label: 'Assistance' },
+              { href: '/planner', label: 'Planner' },
               { href: '/team', label: 'Problem Log' },
               { href: '/contact', label: 'Contact' },
             ].map(({ href, label }) => (
