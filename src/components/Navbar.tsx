@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { Flame } from 'lucide-react';
 import Link from 'next/link'
 import React from 'react'
 import {
@@ -20,19 +21,19 @@ const Navbar = () => {
       <div className="container mx-auto flex flex-wrap items-center justify-between">
 
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center">
           <Image
             src="/flare.png"
             alt="Flare Prep"
-            width={50}
-            height={50}
+            width={60}
+            height={5}
             className="w-auto h-auto object-contain"
             priority
           />
-          <span className="text-xl font-bold text-amber-500">Flare.</span>
-          <span className="text-xl font-bold text-white">AI</span>
+          <span className="text-xl font-bold text-white">Flare</span>
+          <span className="text-xl font-bold text-white">prep</span>
+          <Flame className="mx-2 w-6 h-8 text-amber-500 mr-2"/>
         </Link>
-
         {isSignedIn ? (
           <>
       <div className="flex items-center gap-6">
@@ -43,8 +44,9 @@ const Navbar = () => {
               { href: '/', label: 'Home' },
               { href: '/about', label: 'About' },
               { href: '/FlareKull', label: 'Assistance' },
-              { href: '/planner', label: 'Planner' },
-              { href: '/team', label: 'Problem Log' },
+              { href: '/planner', label: 'Pomodoro' },
+              { href: 'https://drive.google.com/drive/u/2/folders/1j9SDgreJRAUvoqpEHqiZTMhlPAXZonM4', label: 'Resources' },
+              { href: '/reviews', label: 'Reviews' },
               { href: '/contact', label: 'Contact' },
             ].map(({ href, label }) => (
               <NavigationMenuItem key={href}>

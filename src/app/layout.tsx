@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Urbanist, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConvexClerkProvider from "@/providers/convexClerkProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Font setup (matching your theme)
+const urbanist = Urbanist({
   subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-urbanist",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -28,18 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexClerkProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar/>
-        <main className="pt-24 flex-grow">
-          {children}
-          </main>
-        
-        <Footer/>
-      </body>
-    </html>
+      <html lang="en" className={`${urbanist.variable} ${grotesk.variable} dark`}>
+        <body className="antialiased bg-background text-foreground font-urbanist">
+          <Navbar />
+          <main className="pt-24 flex-grow">{children}</main>
+          <Footer />
+        </body>
+      </html>
     </ConvexClerkProvider>
   );
 }
