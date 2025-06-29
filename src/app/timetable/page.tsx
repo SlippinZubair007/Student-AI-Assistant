@@ -149,28 +149,28 @@ const TimetablePage = () => {
       },
       {
         subject: 'Biology',
-        level: 'Expert',
+        level: 'A2',
         schedules: [
           { time: '8:20 - 9:20 AM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Chemistry',
-        level: 'Expert',
+        level: 'A2',
         schedules: [
           { time: '8:20 - 9:20 AM', days: 'Wednesday,Thursday' },
         ],
       },
       {
         subject: 'Physics',
-        level: 'Expert',
+        level: 'A2',
         schedules: [
           { time: '12:30 - 1:30 PM', days: 'Monday' },
         ],
       },
       {
         subject: 'Computer Science',
-        level: 'Business',
+        level: 'A2',
         schedules: [
           { time: '5:20 - 6:40 PM', days: 'Monday,Friday' },
         ],
@@ -180,7 +180,14 @@ const TimetablePage = () => {
 
   const parseTime = (timeStr: string) => {
     const [time, period] = timeStr.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
+    if (!time || typeof time !== 'string' || !time.includes(':')) {
+  console.warn("Invalid time string:", time);
+  return 0; // or throw custom error
+}
+    const [rawHours, rawMinutes] = time.split(':').map(Number);
+let hours = rawHours;
+const minutes = rawMinutes;
+
     
     if (period === 'PM' && hours !== 12) {
       hours += 12;
@@ -232,13 +239,11 @@ const TimetablePage = () => {
 
   const getLevelColor = (level: string) => {
     const colors = {
-      Foundation: 'from-blue-500 to-cyan-500',
-      Core: 'from-green-500 to-emerald-500',
-      Science: 'from-purple-500 to-violet-500',
-      Language: 'from-pink-500 to-rose-500',
-      Technology: 'from-orange-500 to-amber-500',
-      Advanced: 'from-red-500 to-pink-500',
-      Social: 'from-indigo-500 to-blue-500',
+      O1: 'from-green-500 to-emerald-500',
+      O2: 'from-green-500 to-emerald-500',
+      O3: 'from-blue-500 to-cyan-500',
+      A2: 'from-orange-500 to-amber-500',
+      AS: 'from-red-800 to-pink-500',
     };
     return colors[level as keyof typeof colors] || 'from-gray-500 to-gray-400';
   };

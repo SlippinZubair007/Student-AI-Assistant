@@ -18,22 +18,31 @@ const PomodoroTimer = () => {
   const breakMusicRef = useRef<HTMLAudioElement>(null);
   
   // Timer effect
-  useEffect(() => {
+useEffect(() => {
   let interval: NodeJS.Timeout | undefined;
 
-  if (isActive && currentTime > 0) {
+  if (isActive) {
     interval = setInterval(() => {
-      setCurrentTime(time => time - 1);
+      setCurrentTime(prev => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setIsActive(false); // stop timer early to prevent overlap
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
-  } else if (currentTime === 0) {
-    // Timer completed
-    handleTimerComplete();
   }
 
-  return () => {
-    if (interval !== undefined) clearInterval(interval);
-  };
-}, [isActive, currentTime]);
+  return () => clearInterval(interval);
+}, [isActive]);
+
+useEffect(() => {
+  if (currentTime === 0 && isActive === false) {
+    handleTimerComplete(); // Call only once when timer is done
+  }
+}, [currentTime, isActive]);
+
 
   // Music control effect - plays music when timer starts
   useEffect(() => {

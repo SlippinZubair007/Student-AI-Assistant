@@ -58,7 +58,7 @@ const GenerateProgramPage = () => {
   useEffect(() => {
     if (callEnded) {
       const redirectTimer = setTimeout(() => {
-        router.push("/profile");
+        router.push("/contact");
       }, 1500);
       return () => clearTimeout(redirectTimer);
     }
