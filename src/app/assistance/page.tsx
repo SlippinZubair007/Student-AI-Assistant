@@ -214,7 +214,7 @@ const GenerateProgramPage = () => {
               </div>
 
               <h2 className="text-xl font-bold text-amber-500">Flare.AI</h2>
-              <p className="text-sm text-gray-400 mt-1">Flareprep's virtual assistant</p>
+              <p className="text-sm text-gray-400 mt-1">Flarepreps virtual assistant</p>
 
               {/* SPEAKING INDICATOR */}
 
@@ -247,12 +247,13 @@ const GenerateProgramPage = () => {
             <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
               {/* User Image */}
               <div className="relative size-32 mb-4">
-                <img
-                  src={user?.imageUrl}
-                  alt="User"
-                  // ADD THIS "size-full" class to make it rounded on all images
-                  className="size-full object-cover rounded-full"
-                />
+<Image
+  src={user?.imageUrl || "/placeholder.png"}
+  alt="User"
+  className="size-full object-cover rounded-full"
+  fill // only if the container is position-relative
+/>
+
               </div>
 
               <h2 className="text-xl font-bold text-amber-500">You</h2>

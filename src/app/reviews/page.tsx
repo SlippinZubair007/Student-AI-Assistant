@@ -225,7 +225,7 @@ const StudentReviewsCarousel = () => {
                     ))}
                   </div>
                   <p className="text-gray-300 text-center mb-6 leading-relaxed text-sm italic">
-                    "{review.review}"
+                    {review.review}
                   </p>
                   <div className="text-center">
                     <h3 className="text-xl font-semibold text-white mb-1">
