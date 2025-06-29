@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 const SignUppage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#2c2929] to-[#ff5c11] text-white font-sans relative">
+    <div className="min-h-screen text-white font-sans relative">
       
 
       {/* 🔒 Sign Up Container */}

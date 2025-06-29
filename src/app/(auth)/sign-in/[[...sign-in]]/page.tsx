@@ -6,7 +6,7 @@ import React from 'react';
 
 const SignInpage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#000000] via-[#3a2f29]  to-[#db611a] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
 
       <motion.div
         initial={{ opacity: 0, y: 0 }}
