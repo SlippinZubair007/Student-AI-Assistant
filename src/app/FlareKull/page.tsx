@@ -9,7 +9,7 @@ const Homepage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative">
             {/* CORNER DECORATION */}
-            <div className="absolute -top-10 left-0 w-40 h-40 border-l-2 border-t-2" />
+            <div className="absolute border-white -top-10 left-0 w-40 h-40 border-l-2 border-t-2" />
 
             {/* LEFT SIDE CONTENT */}
             <div className="top-0 left-5 lg:col-span-7 space-y-8 relative">
@@ -22,14 +22,14 @@ const Homepage = () => {
                   <span className="text-red-900">Intelligence</span>
                 </div>
                 <div className="pt-5">
-                  <span className="text-amber-700">Student Assistance</span>
+                  <span className="text-amber-500">Student Assistance</span>
                 </div>
               </h1>
 
               {/* SEPARATOR LINE */}
               <div className="h-px w-full bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
 
-              <p className="text-xl text-muted-foreground w-2/3">
+              <p className="text-xl text-gray-400 w-2/3">
                 Talk to Flareprep's virtual assistant and flare up your academic journey with
                 our personalized study plans and resources designed just for you.
               </p>
@@ -57,7 +57,7 @@ const Homepage = () => {
                 <Button
                   size="lg"
                   asChild
-                  className="overflow-hidden bg-red-900 text-primary-foreground px-8 py-6 text-lg font-medium"
+                  className="text-white overflow-hidden bg-red-900  px-8 py-6 text-lg font-medium"
                 >
                   <Link href="/assistance" className="flex items-center font-mono">
                     Get Started

@@ -10,7 +10,6 @@ import {
   FlameKindling, 
   BookOpen,
   Send,
-  Zap,
   Globe,
   MessageCircle,
   Flame,

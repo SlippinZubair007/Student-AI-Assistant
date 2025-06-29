@@ -13,8 +13,6 @@ import {
   Heart,
   TrendingUp,
   Star,
-  ArrowRight,
-  CheckCircle,
   Globe,
   Shield,
   Lightbulb
