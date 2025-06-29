@@ -27,6 +27,9 @@ const carouselItems = [
   {
     icon: "5.png",
   },
+  {
+    icon:"6.png"
+  }
 ];
 
 
@@ -86,9 +89,9 @@ const page = () => {
                     <Card className="w-full h-full shadow-md">
                       <CardContent className="flex flex-col aspect-square items-center justify-center">
                          <img
-          src={carouselItem.icon}
-          className="w-full h-full"
-        />
+                         src={carouselItem.icon}
+                         className="w-full h-full"
+                         />
                       </CardContent>
                     </Card>
                   </SwiperSlide>

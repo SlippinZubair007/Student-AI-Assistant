@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-2">
             <Link href="/" className="flex items-center gap-2">
               <div className="px-1 bg-primary/10 rounded">
-                <Flame className="w-4 h-4 " />
+                <Flame className="w-4 h-4 animate-pulse" />
               </div>
               <span className="text-xl font-bold text-white">
                 Flare<span className="text-white">prep</span>

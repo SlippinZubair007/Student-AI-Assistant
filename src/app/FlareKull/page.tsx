@@ -81,7 +81,7 @@ const Homepage = () => {
               <div className="relative aspect-square max-w-lg mx-auto">
                 <div className="relative overflow-hidden rounded-lg bg-cyber-black">
                   <img
-                    src="/FlareAI.png"
+                    src="/robo.png"
                     alt="Flare AI Assistant"
                     className=" rounded-full size-full object-cover object-center"
                     style={{ width: '80%', height: 'auto' }}

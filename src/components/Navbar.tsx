@@ -32,7 +32,7 @@ const Navbar = () => {
           />
           <span className="text-xl font-bold text-white">Flare</span>
           <span className="text-xl font-bold text-white">prep</span>
-          <Flame className="mx-2 w-6 h-8 text-amber-500 mr-2"/>
+          <Flame className="w-8 h-5 text-amber-400 animate-pulse" />
         </Link>
         {isSignedIn ? (
           <>
@@ -47,6 +47,7 @@ const Navbar = () => {
               { href: '/planner', label: 'Pomodoro' },
               { href: 'https://drive.google.com/drive/u/2/folders/1j9SDgreJRAUvoqpEHqiZTMhlPAXZonM4', label: 'Resources' },
               { href: '/reviews', label: 'Reviews' },
+              { href: '/timetable', label: 'Timetable' },
               { href: '/contact', label: 'Contact' },
             ].map(({ href, label }) => (
               <NavigationMenuItem key={href}>
