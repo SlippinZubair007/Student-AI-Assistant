@@ -1,5 +1,4 @@
-import { ZapIcon,Instagram,Phone,BookOpen,FlameKindling,Youtube,Facebook,Flame } from "lucide-react";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import {Instagram,Phone,BookOpen,FlameKindling,Youtube,Facebook,Flame } from "lucide-react";
 import Link from "next/link";
 
 
