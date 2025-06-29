@@ -3,13 +3,11 @@
 import React, { useState } from 'react';
 import { 
   Flame, 
-  Zap, 
   Target, 
   Users, 
   BookOpen, 
   Award, 
   Rocket, 
-  Brain,
   Heart,
   TrendingUp,
   Star,

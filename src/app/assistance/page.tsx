@@ -6,6 +6,7 @@ import { vapi } from "@/lib/vapi";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 type Message = {
   type?: string;
@@ -195,11 +196,20 @@ const GenerateProgramPage = () => {
 
                 <div className="relative w-full h-full rounded-full bg-card flex items-center justify-center border border-border overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-secondary/10"></div>
-                  <img
-                    src="/Flarelogo.png"
-                    alt="Flare AI"
-                    className="w-full h-full object-cover"
-                  />
+                 <Image
+  src="/Flarelogo.png"
+  alt="Flare AI"
+  fill
+  className="object-cover"
+/>
+
+<Image
+  src={user?.imageUrl || "/placeholder.png"} // fallback if user image fails
+  alt="User"
+  width={128}
+  height={128}
+  className="rounded-full object-cover"
+/>
                 </div>
               </div>
 
