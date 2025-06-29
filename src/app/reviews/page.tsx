@@ -76,11 +76,11 @@ const StudentReviewsCarousel = () => {
   },
   {
     id: 2,
-    name: "Safwaan Ahmad",
+    name: "Safwaan Naveed",
     course: "O Levels",
     rating: 5,
-    review: "",
-    avatar: "SA",
+    review: "My studies are going really well with sir Zubair as he explains each and every topic with great detail. I am now very confident to attempt my CAIE exams",
+    imageSrc: "/safwaan.jpg",
     year: "2025",
   },
   {
