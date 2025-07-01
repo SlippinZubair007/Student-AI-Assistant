@@ -58,7 +58,7 @@ const TimetablePage = () => {
         subject: 'English',
         level: 'O3',
         schedules: [
-          { time: '4:40 - 5:20 PM', days: 'Monday,Tuesday' },
+          { time: '9:00 - 9:40 PM', days: 'Thursday,Friday' },
         ],
       },
       {
@@ -118,7 +118,7 @@ const TimetablePage = () => {
         subject: 'Physics',
         level: 'AS',
         schedules: [
-          { time: '8:20 - 9:20 AM', days: 'Monday' },
+          { time: '5:20 - 6:20 AM', days: 'Monday,Tuesday' },
           { time: '5:40 - 6:40 PM', days: 'Friday' },
         ],
       },
@@ -179,7 +179,7 @@ const TimetablePage = () => {
         subject: 'Computer Science',
         level: 'A2',
         schedules: [
-          { time: '5:20 - 6:40 PM', days: 'Monday,Friday' },
+          { time: '8:20 - 9:40 PM', days: 'Monday,Tuesday' },
         ],
       },
     ],
