@@ -28,81 +28,81 @@ const TimetablePage = () => {
         subject: 'Mathematics',
         level: 'O1',
         schedules: [
-          { time: '3:00 - 4:00 PM', days: 'Monday,Tuesday,Wednesday' },
+          { time: '3:00 PM - 4:00 PM', days: 'Monday,Tuesday,Wednesday' },
         ],
       },
       {
         subject: 'Mathematics',
         level: 'O2',
         schedules: [
-          { time: '4:40 - 5:20 PM', days: 'Wednesday' },
-          { time: '3:00 - 4:00 PM', days: 'Thursday,Friday' },
+          { time: '4:40 PM - 5:20 PM', days: 'Wednesday' },
+          { time: '3:00 PM - 4:00 PM', days: 'Thursday,Friday' },
         ],
       },
       {
         subject: 'Urdu',
         level: 'O1',
         schedules: [
-          { time: '4:00 - 4:40 PM', days: 'Monday,Tuesday,Wednesday' },
+          { time: '4:00 PM - 4:40 PM', days: 'Monday,Tuesday,Wednesday' },
         ],
       },
       {
         subject: 'Physics',
         level: 'O3',
         schedules: [
-          { time: '4:40 - 5:20 PM', days: 'Monday,Tuesday' },
-          { time: '5:20 - 6:00 PM', days: 'Wednesday' },
+          { time: '4:40 PM - 5:20 PM', days: 'Monday,Tuesday' },
+          { time: '5:20 PM - 6:00 PM', days: 'Wednesday' },
         ],
       },
       {
         subject: 'English',
         level: 'O3',
         schedules: [
-          { time: '9:00 - 9:40 PM', days: 'Thursday,Friday' },
+          { time: '9:00 PM - 9:40 PM', days: 'Thursday,Friday' },
         ],
       },
       {
         subject: 'Biology',
         level: 'O3',
         schedules: [
-          { time: '5:20 - 6:00 PM', days: 'Monday,Tuesday' },
+          { time: '5:20 PM - 6:00 PM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Maths',
         level: 'O3',
         schedules: [
-          { time: '7:20 - 8:20 PM', days: 'Monday,Tuesday' },
-          { time: '8:00 - 9:00 PM', days: 'Wednesday' },
+          { time: '7:20 PM - 8:20 PM', days: 'Monday,Tuesday' },
+          { time: '8:00 PM - 9:00 PM', days: 'Wednesday' },
         ],
       },
       {
         subject: 'Chemistry',
         level: 'O3',
         schedules: [
-          { time: '4:00 - 4:40 PM', days: 'Thursday,Friday' },
+          { time: '4:00 PM - 4:40 PM', days: 'Thursday,Friday' },
         ],
       },
       {
         subject: 'Add Maths',
         level: 'O3',
         schedules: [
-          { time: '3:00 - 3:40 PM', days: 'Monday,Tuesday,Friday' },
+          { time: '3:00 PM - 3:40 PM', days: 'Monday,Tuesday,Friday' },
         ],
       },
       {
         subject: 'Mathematics - 3',
         level: 'O3',
         schedules: [
-          { time: '7:20 - 8:20 PM', days: 'Monday,Tuesday,Wednesday' },
+          { time: '7:20 PM - 8:20 PM', days: 'Monday,Tuesday,Wednesday' },
         ],
       },
        {
         subject: 'Computer Science',
         level: 'O3',
         schedules: [
-          { time: '9:00 - 10:00 PM', days: 'Wednesday' },
-          { time: '8:00 - 9:00 PM', days: 'Thursday,Friday' },
+          { time: '9:00 PM - 10:00 PM', days: 'Wednesday' },
+          { time: '8:00 PM - 9:00 PM', days: 'Thursday,Friday' },
         ],
       },
     ],
@@ -111,38 +111,38 @@ const TimetablePage = () => {
         subject: 'Biology',
         level: 'AS',
         schedules: [
-          { time: '3:00 - 4:00 PM', days: 'Thursday,Friday,Saturday' },
+          { time: '3:00 PM - 4:00 PM', days: 'Thursday,Friday,Saturday' },
         ],
       },
       {
         subject: 'Physics',
         level: 'AS',
         schedules: [
-          { time: '5:20 - 6:20 PM', days: 'Monday,Tuesday' },
-          { time: '5:40 - 6:40 PM', days: 'Friday' },
+          { time: '5:20 PM - 6:20 PM', days: 'Monday,Tuesday' },
+          { time: '5:40 PM - 6:40 PM', days: 'Friday' },
         ],
       },
       {
         subject: 'Chemistry',
         level: 'AS',
         schedules: [
-          { time: '4:00 - 5:00 PM', days: 'Monday,Friday' },
+          { time: '4:00 PM - 5:00 PM', days: 'Monday,Friday' },
         ],
       },
       {
         subject: 'Computer Science',
         level: 'AS',
         schedules: [
-          { time: '7:00 - 8:00 PM', days: 'Wednesday' },
-          { time: '5:40 - 6:40 PM', days: 'Thursday' },
+          { time: '7:00 PM - 8:00 PM', days: 'Wednesday' },
+          { time: '5:40 PM - 6:40 PM', days: 'Thursday' },
         ],
       },
       {
         subject: 'Mathematics',
         level: 'AS',
         schedules: [
-          { time: '6:00 - 7:00 PM', days: 'Wednesday' },
-          { time: '4:00 - 5:40 PM', days: 'Thursday,Friday' },
+          { time: '6:00 PM - 7:00 PM', days: 'Wednesday' },
+          { time: '4:00 PM - 5:40 PM', days: 'Thursday,Friday' },
         ],
       },
     ],
@@ -151,35 +151,35 @@ const TimetablePage = () => {
         subject: 'Mathematics',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 PM', days: 'Monday,Tuesday' },
+          { time: '8:20 PM - 9:20 PM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Biology',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 PM', days: 'Monday,Tuesday' },
+          { time: '8:20 PM - 9:20 PM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Chemistry',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 PM', days: 'Wednesday,Thursday' },
+          { time: '8:20 PM - 9:20 PM', days: 'Wednesday,Thursday' },
         ],
       },
       {
         subject: 'Physics',
         level: 'A2',
         schedules: [
-          { time: '12:30 - 1:30 PM', days: 'Monday' },
+          { time: '6:40 PM - 8:00 PM', days: 'Monday' },
         ],
       },
       {
         subject: 'Computer Science',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:40 PM', days: 'Monday,Tuesday' },
+          { time: '8:20 PM - 9:40 PM', days: 'Monday,Tuesday' },
         ],
       },
     ],
@@ -237,7 +237,7 @@ const minutes = rawMinutes;
 
       if (isDayMatch) {
         const { start, end } = parseTimeRange(schedule.time);
-        return currentMinutes >= start && currentMinutes <= end;
+        return currentMinutes >= start && currentMinutes <= end ;
       }
 
       return false;
