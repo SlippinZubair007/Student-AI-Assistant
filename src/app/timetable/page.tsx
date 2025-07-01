@@ -118,7 +118,7 @@ const TimetablePage = () => {
         subject: 'Physics',
         level: 'AS',
         schedules: [
-          { time: '5:20 - 6:20 AM', days: 'Monday,Tuesday' },
+          { time: '5:20 - 6:20 PM', days: 'Monday,Tuesday' },
           { time: '5:40 - 6:40 PM', days: 'Friday' },
         ],
       },
@@ -126,7 +126,7 @@ const TimetablePage = () => {
         subject: 'Chemistry',
         level: 'AS',
         schedules: [
-          { time: '4:00 - 5:00 AM', days: 'Monday,Friday' },
+          { time: '4:00 - 5:00 PM', days: 'Monday,Friday' },
         ],
       },
       {
@@ -151,21 +151,21 @@ const TimetablePage = () => {
         subject: 'Mathematics',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 AM', days: 'Monday,Tuesday' },
+          { time: '8:20 - 9:20 PM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Biology',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 AM', days: 'Monday,Tuesday' },
+          { time: '8:20 - 9:20 PM', days: 'Monday,Tuesday' },
         ],
       },
       {
         subject: 'Chemistry',
         level: 'A2',
         schedules: [
-          { time: '8:20 - 9:20 AM', days: 'Wednesday,Thursday' },
+          { time: '8:20 - 9:20 PM', days: 'Wednesday,Thursday' },
         ],
       },
       {
