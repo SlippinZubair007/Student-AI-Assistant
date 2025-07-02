@@ -13,7 +13,7 @@ const SignInpage = () => {
         animate={{ opacity: 1, y: 50 }}
         transition={{ duration: 1, ease: 'easeOut' }}
       >
-        <SignIn />
+        <SignIn/>
       </motion.div>
     </div>
   );
