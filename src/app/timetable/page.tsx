@@ -94,7 +94,8 @@ const TimetablePage = () => {
         subject: 'Mathematics - 3',
         level: 'O3',
         schedules: [
-          { time: '7:20 PM - 8:20 PM', days: 'Monday,Tuesday,Wednesday' },
+          { time: '7:20 PM - 8:20 PM', days: 'Monday,Tuesday' },
+          { time: '7:00 PM - 8:00 PM', days: 'Wednesday' },
         ],
       },
        {
