@@ -133,7 +133,7 @@ const TimetablePage = () => {
         level: 'AS',
         schedules: [
           { time: '5:20 PM - 6:20 PM', days: 'Wednesday' },
-          { time: '4:00 PM - 5:40 PM', days: 'Thursday,Friday,Saturday' },
+          { time: '4:40 PM - 5:40 PM', days: 'Thursday,Friday,Saturday' },
         ],
       },
     ],
