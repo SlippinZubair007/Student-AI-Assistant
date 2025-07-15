@@ -19,7 +19,7 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Flare.AI",
+  title: "Flareprep",
   description: "Student AI Assistant by Flareprep",
 };
 
