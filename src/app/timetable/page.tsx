@@ -123,7 +123,8 @@ const TimetablePage = () => {
         subject: 'Computer Science',
         level: 'AS',
         schedules: [
-          { time: '5:40 PM - 6:40 PM', days: 'Wednesday,Thursday,Friday' },
+          { time: '5:40 PM - 6:40 PM', days: 'Wednesday' },
+          { time: '6:00 PM - 7:00 PM', days: 'Thursday,Friday' },
         ],
       },
       {
