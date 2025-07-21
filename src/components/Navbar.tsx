@@ -45,7 +45,7 @@ const Navbar = () => {
               { href: '/about', label: 'About' },
               { href: '/FlareKull', label: 'Assistance' },
               { href: '/planner', label: 'Pomodoro' },
-              { href: 'https://drive.google.com/drive/u/2/folders/1j9SDgreJRAUvoqpEHqiZTMhlPAXZonM4', label: 'Resources' },
+              { href: '/resources', label:'Resources'},
               { href: '/reviews', label: 'Reviews' },
               { href: '/timetable', label: 'Timetable' },
               { href: '/contact', label: 'Contact' },

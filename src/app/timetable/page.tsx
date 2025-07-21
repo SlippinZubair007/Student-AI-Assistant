@@ -110,7 +110,6 @@ const TimetablePage = () => {
         level: 'AS',
         schedules: [
           { time: '5:20 PM - 6:20 PM', days: 'Monday,Tuesday' },
-          { time: '5:40 PM - 6:40 PM', days: 'Friday' },
         ],
       },
       {
@@ -124,16 +123,14 @@ const TimetablePage = () => {
         subject: 'Computer Science',
         level: 'AS',
         schedules: [
-          { time: '6:20 PM - 7:00 PM', days: 'Wednesday' },
-          { time: '5:40 PM - 6:40 PM', days: 'Thursday' },
+          { time: '5:40 PM - 6:40 PM', days: 'Wednesday,Thursday,Friday' },
         ],
       },
       {
         subject: 'Mathematics',
         level: 'AS',
         schedules: [
-          { time: '5:20 PM - 6:20 PM', days: 'Wednesday' },
-          { time: '4:40 PM - 5:40 PM', days: 'Thursday,Friday,Saturday' },
+          { time: '4:40 PM - 5:40 PM', days: 'Wednesday,Thursday,Friday,Saturday' },
         ],
       },
     ],
@@ -163,7 +160,7 @@ const TimetablePage = () => {
         subject: 'Physics',
         level: 'A2',
         schedules: [
-          { time: '6:40 PM - 8:00 PM', days: 'Thursday,Friday' },
+          { time: '3:00 PM - 4:00 PM', days: 'Thursday,Friday' },
         ],
       },
       {
