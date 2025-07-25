@@ -48,6 +48,7 @@ const Navbar = () => {
               { href: 'https://drive.google.com/drive/u/2/folders/1j9SDgreJRAUvoqpEHqiZTMhlPAXZonM4', label:'Resources'},
               { href: '/reviews', label: 'Reviews' },
               { href: '/timetable', label: 'Timetable' },
+              { href: '/test', label: 'Exams' },
               { href: '/contact', label: 'Contact' },
             ].map(({ href, label }) => (
               <NavigationMenuItem key={href}>
