@@ -27,7 +27,7 @@ const TestManagementPage = () => {
       subject: "Physics",
       startTime: new Date("2025-07-25T17:40:00"),
       endTime: new Date("2025-07-25T18:40:00"),
-      pdfPath: "/OL/chemt1.pdf",
+      pdfPath: "/OL/phys1.pdf",
       submitted: false,
       submittedAt: null
     },
@@ -481,7 +481,7 @@ const TestManagementPage = () => {
                 <li>Submit solutions as PDF files during active periods</li>
                 <li>Only PDF solutions will be accepted , you can use CAMSCANNER</li>
                 <li>You should see a message at top after submission, avoid multiple submissions</li>
-                <li>Once the exam timeframe ends, you won't be able to submit solutions or see the exam</li>
+                <li>Once the exam timeframe ends, you will not be able to submit solutions or see the exam</li>
               </ul>
             </div>
             <div>
