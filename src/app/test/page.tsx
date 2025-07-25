@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Upload, Clock, Eye, Send, FileText, CheckCircle, XCircle, AlertCircle, User, Shield, Key } from 'lucide-react';
+import { Clock, Eye, Send, FileText, CheckCircle, XCircle, AlertCircle, User, Shield, Key } from 'lucide-react';
 
 interface Test {
   id: number;
@@ -188,11 +188,11 @@ const TestManagementPage = () => {
     input.click();
   };
 
-  const handleViewPDF = (pdfPath: string, fileName: string) => {
+  const handleViewPDF = (pdfPath: string) => {
     window.open(pdfPath, '_blank', 'noopener,noreferrer');
   };
 
-  const handleViewSolution = (solutionUrl: string, fileName: string) => {
+  const handleViewSolution = (solutionUrl: string) => {
     window.open(solutionUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -287,7 +287,7 @@ const TestManagementPage = () => {
                   <span className="text-green-300 text-xs">📄 {submission.solutionFileName}</span>
                   {userRole === 'admin' && submission.solutionUrl && (
                     <button 
-                      onClick={() => handleViewSolution(submission.solutionUrl!, submission.solutionFileName!)}
+                      onClick={() => handleViewSolution(submission.solutionUrl!)}
                       className="text-blue-400 text-xs hover:underline flex items-center gap-1"
                     >
                       <Eye className="w-3 h-3" />
@@ -303,7 +303,7 @@ const TestManagementPage = () => {
             <button
               onClick={() => {
                 if (canViewTest(test)) {
-                  handleViewPDF(test.pdfPath, test.title);
+                  handleViewPDF(test.pdfPath);
                 }
               }}
               disabled={!canViewTest(test)}
@@ -477,7 +477,7 @@ const TestManagementPage = () => {
               <h4 className="font-semibold mb-2 text-blue-200">📚 For Students:</h4>
               <ul className="list-disc pl-6 space-y-1">
                 <li>View tests only during active time periods</li>
-                <li>Click "View Test" to open PDF of the test</li>
+                <li>Click &quot;View Test&quot; to open PDF of the test</li>
                 <li>Submit solutions as PDF files during active periods</li>
                 <li>Only PDF solutions will be accepted , you can use CAMSCANNER</li>
                 <li>You should see a message at top after submission, avoid multiple submissions</li>
