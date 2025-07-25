@@ -27,7 +27,7 @@ const TestManagementPage = () => {
       subject: "Physics",
       startTime: new Date("2025-07-25T17:40:00"),
       endTime: new Date("2025-07-25T18:55:00"),
-      pdfPath: "/OL/phys1.pdf",
+      pdfPath: "/OL/phys/olphyst2.pdf",
       submitted: false,
       submittedAt: null
     },
@@ -37,7 +37,7 @@ const TestManagementPage = () => {
       subject: "Physics", 
       startTime: new Date("2025-07-25T17:40:00"),
       endTime: new Date("2025-07-25T18:55:00"),
-      pdfPath: "/AL/physicst1.pdf",
+      pdfPath: "/AS/phys/asphyst1.pdf",
       submitted: false,
       submittedAt: null
     },
