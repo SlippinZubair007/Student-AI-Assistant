@@ -47,7 +47,7 @@ const TestManagementPage = () => {
       subject: "Computer Science",
       startTime: new Date("2025-07-25T18:40:00"),
       endTime: new Date("2025-07-25T19:55:00"),
-      pdfPath: "/pdfs/cst1.pdf",
+      pdfPath: "/OL/CS/cst2.pdf",
       submitted: false,
       submittedAt: null
     },
@@ -57,7 +57,7 @@ const TestManagementPage = () => {
         subject: "English",
         startTime: new Date("2025-07-25T19:40:00"),
         endTime: new Date("2025-07-25T20:55:00"),
-        pdfPath: "/OL/engt1.pdf",
+        pdfPath: "/OL/eng/engt1.pdf",
         submitted: false,
         submittedAt: null
     }
