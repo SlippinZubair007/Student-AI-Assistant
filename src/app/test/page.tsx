@@ -1,61 +1,88 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Upload, Clock, Eye, Send, FileText, CheckCircle, XCircle, AlertCircle, Trash2, Key, User, Shield, ExternalLink, FolderOpen } from 'lucide-react';
+import { Upload, Clock, Eye, Send, FileText, CheckCircle, XCircle, AlertCircle, User, Shield, Key } from 'lucide-react';
 
 interface Test {
   id: number;
   title: string;
-  subject: string;
+  subject: string;  
   startTime: Date;
   endTime: Date;
-  pdfUrl: string;
+  pdfPath: string;
   submitted: boolean;
   submittedAt: Date | null;
   solutionUrl?: string;
   solutionFileName?: string;
 }
 
+// Global storage that persists across user sessions
+// In a real app, this would be a database
+let globalSubmissions: {[key: number]: {submitted: boolean, submittedAt: Date | null, solutionUrl?: string, solutionFileName?: string}} = {};
+
 const TestManagementPage = () => {
-  const [tests, setTests] = useState<Test[]>([]);
+  const [tests] = useState<Test[]>([
+    {
+      id: 1,
+      title: "OL Physics T1",
+      subject: "Physics",
+      startTime: new Date("2025-07-25T17:40:00"),
+      endTime: new Date("2025-07-25T18:40:00"),
+      pdfPath: "/OL/chemt1.pdf",
+      submitted: false,
+      submittedAt: null
+    },
+    {
+      id: 2,
+      title: "AS Physics T1",
+      subject: "Physics", 
+      startTime: new Date("2025-07-26T17:40:00"),
+      endTime: new Date("2025-07-26T18:40:00"),
+      pdfPath: "/AL/physicst1.pdf",
+      submitted: false,
+      submittedAt: null
+    },
+    {
+      id: 3,
+      title: "OL CS T2",
+      subject: "Computer Science",
+      startTime: new Date("2025-07-24T18:40:00"),
+      endTime: new Date("2025-07-24T19:40:00"),
+      pdfPath: "/pdfs/cst1.pdf",
+      submitted: false,
+      submittedAt: null
+    },
+    {
+        id: 4,
+        title: "OL English T1",
+        subject: "English",
+        startTime: new Date("2025-07-27T19:40:00"),
+        endTime: new Date("2025-07-27T20:40:00"),
+        pdfPath: "/OL/engt1.pdf",
+        submitted: false,
+        submittedAt: null
+    }
+  ]);
+
   const [userRole, setUserRole] = useState('student');
   const [showPincodeModal, setShowPincodeModal] = useState(false);
   const [pincode, setPincode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<number | null>(null);
+  
+  // Local state that syncs with global storage
+  const [testSubmissions, setTestSubmissions] = useState<{[key: number]: {submitted: boolean, submittedAt: Date | null, solutionUrl?: string, solutionFileName?: string}}>(globalSubmissions);
 
-  // Google Drive folder links - Replace these with your actual folder links
-  const ADMIN_UPLOAD_FOLDER = 'https://drive.google.com/drive/folders/14_DY48lDt58d4LiCoHOP_-qZfY2ij6L1?usp=drive_link'; // Tests folder
-  const STUDENT_SUBMIT_FOLDER = 'https://drive.google.com/drive/folders/1xmADyWxqIWfN11hn3q66KNU_qhRTEvAX?usp=drive_link'; // Solutions folder
-  const VIEW_TESTS_FOLDER = 'https://drive.google.com/drive/folders/14_DY48lDt58d4LiCoHOP_-qZfY2ij6L1?usp=drive_link'; // Same as tests folder for viewing
-
-  // Sample data
+  // Sync local state with global storage on component mount
   useEffect(() => {
-    const sampleTests: Test[] = [
-      {
-        id: 1,
-        title: 'Mathematics Quiz 1',
-        subject: 'Mathematics',
-        startTime: new Date('2025-07-25T10:00:00'),
-        endTime: new Date('2025-07-25T12:00:00'),
-        pdfUrl: 'https://drive.google.com/file/d/1SAMPLE_FILE_ID/view',
-        submitted: false,
-        submittedAt: null
-      },
-      {
-        id: 2,
-        title: 'Physics Test 1',
-        subject: 'Physics',
-        startTime: new Date('2025-07-24T14:00:00'),
-        endTime: new Date('2025-07-24T16:00:00'),
-        pdfUrl: 'https://drive.google.com/file/d/1SAMPLE_FILE_ID_2/view',
-        submitted: true,
-        submittedAt: new Date('2025-07-24T15:45:00'),
-        solutionFileName: 'physics_solution.pdf'
-      }
-    ];
-    setTests(sampleTests);
+    setTestSubmissions({...globalSubmissions});
   }, []);
 
-  // Admin auth
+  // Function to update both local and global storage
+  const updateSubmissions = (newSubmissions: typeof testSubmissions) => {
+    globalSubmissions = {...newSubmissions};
+    setTestSubmissions(newSubmissions);
+  };
+
   const handleAdminAccess = () => {
     if (pincode === '1269') {
       setIsAuthenticated(true);
@@ -76,39 +103,97 @@ const TestManagementPage = () => {
     }
   };
 
-  // Open Google Drive folders
-  const openAdminUploadFolder = () => {
-    window.open(ADMIN_UPLOAD_FOLDER, '_blank');
-  };
+  const uploadSolutionToCloudinary = async (file: File): Promise<string> => {
+    try {
+      const cloudName = "dq4ebynfz";
+      const uploadPreset = "flareuploads";
 
-  const openStudentSubmitFolder = (testId: number) => {
-    // You can customize this to open different folders for different tests
-    window.open(STUDENT_SUBMIT_FOLDER, '_blank');
-    
-    // Mark as submitted (simulated)
-    const updatedTests = tests.map(test => {
-      if (test.id === testId) {
-        return {
-          ...test,
-          submitted: true,
-          submittedAt: new Date(),
-          solutionFileName: 'solution_uploaded.pdf'
-        };
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", uploadPreset);
+      formData.append("folder", "solutions");
+
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/raw/upload`;
+
+      const res = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error(`Upload failed: ${res.status} ${res.statusText}`);
       }
-      return test;
-    });
-    
-    setTests(updatedTests);
-  };
 
-  const openViewTestsFolder = () => {
-    window.open(VIEW_TESTS_FOLDER, '_blank');
-  };
-
-  const handleDeleteTest = (testId: number) => {
-    if (window.confirm('Are you sure you want to delete this test?')) {
-      setTests(prev => prev.filter(test => test.id !== testId));
+      const data = await res.json();
+      console.log("✅ Solution uploaded to Cloudinary:", data);
+      return data.secure_url as string;
+    } catch (error) {
+      console.error("❌ Cloudinary upload error:", error);
+      throw error;
     }
+  };
+
+  const handleSolutionSubmit = async (testId: number) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.pdf';
+    
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+
+      if (file.type !== 'application/pdf') {
+        alert('Please select a PDF file only');
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File size must be less than 10MB');
+        return;
+      }
+
+      try {
+        setIsSubmitting(testId);
+        
+        console.log('Uploading solution to Cloudinary...');
+        const solutionUrl = await uploadSolutionToCloudinary(file);
+        console.log('Upload successful:', solutionUrl);
+        
+        // Update both local and global storage
+        const newSubmissions = {
+          ...testSubmissions,
+          [testId]: {
+            submitted: true,
+            submittedAt: new Date(),
+            solutionUrl,
+            solutionFileName: file.name
+          }
+        };
+        
+        updateSubmissions(newSubmissions);
+        
+        alert('✅ Solution uploaded successfully to Cloudinary!');
+      } catch (error) {
+        console.error('Solution upload error:', error);
+        alert(`❌ Error uploading solution: ${
+          typeof error === 'object' && error !== null && 'message' in error
+            ? (error as { message?: string }).message
+            : 'Please try again.'
+        }`);
+      } finally {
+        setIsSubmitting(null);
+      }
+    };
+    
+    input.click();
+  };
+
+  const handleViewPDF = (pdfPath: string, fileName: string) => {
+    window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleViewSolution = (solutionUrl: string, fileName: string) => {
+    window.open(solutionUrl, '_blank', 'noopener,noreferrer');
   };
 
   const getTestStatus = (test: Test) => {
@@ -119,25 +204,33 @@ const TestManagementPage = () => {
   };
 
   const canViewTest = (test: Test) => {
-    return getTestStatus(test) !== 'upcoming';
+    const status = getTestStatus(test);
+    return status === 'active';
   };
 
   const canSubmit = (test: Test) => {
     const status = getTestStatus(test);
-    return status === 'active' && !test.submitted;
+    const submission = testSubmissions[test.id];
+    return status === 'active' && !submission?.submitted;
   };
 
   const formatTime = (date: Date) => {
     return date.toLocaleString('en-US', {
       month: 'short',
       day: 'numeric',
+      year: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
     });
   };
 
+  // Calculate total submissions from global storage
+  const totalSubmissions = Object.values(globalSubmissions).filter(s => s.submitted).length;
+
   const TestCard: React.FC<{ test: Test }> = ({ test }) => {
     const status = getTestStatus(test);
+    const submission = testSubmissions[test.id] || test;
+    
     const statusColors = {
       upcoming: 'border-yellow-500 bg-yellow-500/10',
       active: 'border-green-500 bg-green-500/10',
@@ -148,29 +241,30 @@ const TestManagementPage = () => {
       <div className={`relative overflow-hidden rounded-xl border-2 ${statusColors[status]} backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20`}>
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-gray-900/80"></div>
         <div className="relative p-6">
-          {/* Admin Delete Button */}
-          {userRole === 'admin' && isAuthenticated && (
-            <button
-              onClick={() => handleDeleteTest(test.id)}
-              className="absolute top-2 right-2 w-8 h-8 bg-red-600/80 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-200 z-10"
-            >
-              <Trash2 className="w-4 h-4 text-white" />
-            </button>
-          )}
-
-          {/* Status Badge */}
           <div className="absolute top-4 right-4">
-            {status === 'upcoming' && <AlertCircle className="w-5 h-5 text-yellow-500" />}
-            {status === 'active' && <CheckCircle className="w-5 h-5 text-green-500" />}
-            {status === 'ended' && <XCircle className="w-5 h-5 text-red-500" />}
+            {status === 'upcoming' && (
+              <span title="Upcoming">
+                <AlertCircle className="w-5 h-5 text-yellow-500" />
+              </span>
+            )}
+            {status === 'active' && (
+              <span title="Active">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+              </span>
+            )}
+            {status === 'ended' && (
+              <span title="Ended">
+                <XCircle className="w-5 h-5 text-red-500" />
+              </span>
+            )}
           </div>
 
-          {/* Test Info */}
           <div className="mb-4">
             <h3 className="text-xl font-bold text-white mb-2 pr-8">{test.title}</h3>
-            <p className="text-gray-300 text-sm mb-3">{test.subject}</p>
+            <p className="text-gray-300 text-sm mb-1">{test.subject}</p>
+            <p className="text-gray-400 text-xs mb-3">📄 {test.pdfPath}</p>
             
-            <div className="flex items-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-col gap-2 text-sm text-gray-400">
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
                 <span>Start: {formatTime(test.startTime)}</span>
@@ -182,23 +276,22 @@ const TestManagementPage = () => {
             </div>
           </div>
 
-          {/* Submission Status */}
-          {test.submitted && (
+          {submission.submitted && (
             <div className="mb-4 p-3 rounded-lg bg-green-500/20 border border-green-500/30">
               <p className="text-green-400 text-sm flex items-center gap-2">
                 <CheckCircle className="w-4 h-4" />
-                Submitted on {test.submittedAt ? formatTime(test.submittedAt) : 'N/A'}
+                Submitted on {submission.submittedAt ? formatTime(submission.submittedAt) : 'N/A'}
               </p>
-              {test.solutionFileName && (
+              {submission.solutionFileName && (
                 <div className="mt-2 flex items-center justify-between">
-                  <span className="text-green-300 text-xs">📄 {test.solutionFileName}</span>
-                  {userRole === 'admin' && (
+                  <span className="text-green-300 text-xs">📄 {submission.solutionFileName}</span>
+                  {userRole === 'admin' && submission.solutionUrl && (
                     <button 
-                      onClick={() => window.open(STUDENT_SUBMIT_FOLDER, '_blank')}
+                      onClick={() => handleViewSolution(submission.solutionUrl!, submission.solutionFileName!)}
                       className="text-blue-400 text-xs hover:underline flex items-center gap-1"
                     >
                       <Eye className="w-3 h-3" />
-                      View Solutions
+                      View Solution
                     </button>
                   )}
                 </div>
@@ -206,16 +299,11 @@ const TestManagementPage = () => {
             </div>
           )}
 
-          {/* Action Buttons */}
           <div className="flex gap-3">
             <button
               onClick={() => {
                 if (canViewTest(test)) {
-                  if (test.pdfUrl.includes('drive.google.com')) {
-                    window.open(test.pdfUrl, '_blank');
-                  } else {
-                    openViewTestsFolder();
-                  }
+                  handleViewPDF(test.pdfPath, test.title);
                 }
               }}
               disabled={!canViewTest(test)}
@@ -224,6 +312,7 @@ const TestManagementPage = () => {
                   ? 'bg-red-600 hover:bg-red-700 text-white'
                   : 'bg-gray-700 text-gray-400 cursor-not-allowed'
               }`}
+              title={canViewTest(test) ? 'View Test PDF' : 'Test not available yet'}
             >
               <Eye className="w-4 h-4" />
               View Test
@@ -233,19 +322,28 @@ const TestManagementPage = () => {
               <button
                 onClick={() => {
                   if (canSubmit(test)) {
-                    openStudentSubmitFolder(test.id);
+                    handleSolutionSubmit(test.id);
                   }
                 }}
-                disabled={!canSubmit(test)}
+                disabled={!canSubmit(test) || isSubmitting === test.id}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                  canSubmit(test)
+                  canSubmit(test) && isSubmitting !== test.id
                     ? 'bg-green-600 hover:bg-green-700 text-white'
                     : 'bg-gray-700 text-gray-400 cursor-not-allowed'
                 }`}
+                title={canSubmit(test) ? 'Submit Solution' : submission.submitted ? 'Already Submitted' : 'Submission Closed'}
               >
-                <Send className="w-4 h-4" />
-                <ExternalLink className="w-3 h-3" />
-                {test.submitted ? 'Submitted' : 'Submit'}
+                {isSubmitting === test.id ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    {submission.submitted ? 'Submitted' : 'Submit'}
+                  </>
+                )}
               </button>
             )}
           </div>
@@ -257,25 +355,27 @@ const TestManagementPage = () => {
   return (
     <div className="min-h-screen p-6 bg-transparent">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent mb-4">
-            Test Management System
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-red-700 to-amber-500 bg-clip-text text-transparent mb-4 leading-[2.2]">
+            Test your knowledge 
           </h1>
-       
           
-          {/* Drive Status */}
-          <div className="mt-4 flex justify-center items-center gap-4">
+          <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-green-500/20 text-green-400 border border-green-500/30">
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              Google Drive: Ready
+              Cloudinary: Connected
             </span>
-            
-        
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              Active Tests: {tests.filter(t => getTestStatus(t) === 'active').length}
+            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-purple-500/20 text-purple-400 border border-purple-500/30">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              Total Submissions: {totalSubmissions}
+            </span>
           </div>
         </div>
 
-        {/* Role Selection */}
         <div className="flex justify-center mb-8">
           <div className="bg-black/40 backdrop-blur-sm rounded-2xl border border-red-500/30 p-6 max-w-md w-full">
             <h3 className="text-lg font-bold text-white mb-4 text-center flex items-center justify-center gap-2">
@@ -309,81 +409,20 @@ const TestManagementPage = () => {
           </div>
         </div>
 
-        {/* Admin Upload Section */}
-        {userRole === 'admin' && isAuthenticated && (
-          <div className="mb-8">
-            <div className="bg-black/40 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Upload className="w-6 h-6 text-red-500" />
-                Upload Tests to Google Drive
-              </h2>
-              
-              <div className="border-2 border-dashed border-red-500/50 hover:border-red-500 rounded-xl p-12 text-center transition-colors duration-300 cursor-pointer"
-                   onClick={openAdminUploadFolder}>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30 transition-colors duration-300">
-                    <FolderOpen className="w-8 h-8 text-red-500" />
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-white mb-2">
-                      Click to open Google Drive upload folder
-                    </p>
-                    <p className="text-gray-400 text-sm">
-                      Upload your test PDFs directly to the Google Drive folder
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 text-red-400 text-sm">
-                    <ExternalLink className="w-4 h-4" />
-                    Opens in new tab
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <button
-                  onClick={openAdminUploadFolder}
-                  className="flex items-center justify-center gap-3 p-4 bg-red-600/20 border border-red-500/30 rounded-lg hover:bg-red-600/30 transition-colors"
-                >
-                  <Upload className="w-5 h-5 text-red-400" />
-                  <span className="text-red-400 font-medium">Upload Tests</span>
-                  <ExternalLink className="w-4 h-4 text-red-400" />
-                </button>
-                
-                <button
-                  onClick={() => window.open(STUDENT_SUBMIT_FOLDER, '_blank')}
-                  className="flex items-center justify-center gap-3 p-4 bg-green-600/20 border border-green-500/30 rounded-lg hover:bg-green-600/30 transition-colors"
-                >
-                  <Eye className="w-5 h-5 text-green-400" />
-                  <span className="text-green-400 font-medium">View Solutions</span>
-                  <ExternalLink className="w-4 h-4 text-green-400" />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-
-
-        {/* Test Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tests.map(test => (
             <TestCard key={test.id} test={test} />
           ))}
         </div>
 
-        {/* Empty State */}
         {tests.length === 0 && (
           <div className="text-center py-16">
             <FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-400 mb-2">No tests available</h3>
-            <p className="text-gray-500">
-              {userRole === 'admin' ? 'Upload some tests to get started' : 'No tests have been assigned yet'}
-            </p>
+            <p className="text-gray-500">Tests will appear here when added to the array</p>
           </div>
         )}
 
-        {/* Pincode Modal */}
         {showPincodeModal && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6">
             <div className="bg-gray-900 rounded-2xl border border-red-500/30 p-8 w-full max-w-md">
@@ -428,21 +467,25 @@ const TestManagementPage = () => {
           </div>
         )}
 
-        {/* Setup Instructions */}
-        <div className="mt-12 p-6 bg-blue-500/10 border border-blue-500/30 rounded-xl">
-          <h3 className="text-blue-400 font-bold mb-3">🔧 Instructions</h3>
-          <div className="text-blue-300 text-sm space-y-2">
-            <p><strong>1.</strong> Access all ongoing tests from this page</p>
-            <ul className="ml-4 space-y-1">
-              <li>• <strong>Tests Folder:</strong> Where admins upload test PDFs</li>
-              <li>• <strong>Solutions Folder:</strong> Where students submit their solutions</li>
-              <li>• <strong>View Folder:</strong> Public folder for students to view tests</li>
-            </ul>
-
-            <p><strong>2.</strong> Attempt tests on time and upload before ending time otherwise they will be <code className="text-red-500 px-1 rounded font-bold">locked</code></p>
-            <p><strong>3.</strong> All tests must be in scanned PDF format</p>
-            <p><strong>4.</strong> You can use CAMSCANNER for uploading scanned documents</p>
-            <p><strong>5.</strong> Uload tests in your NAME folder only</p>
+        <div className="mt-12 p-6 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-300">
+          <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <FileText className="w-5 h-5" />
+            Exam instructions 
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <h4 className="font-semibold mb-2 text-blue-200">📚 For Students:</h4>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>View tests only during active time periods</li>
+                <li>Click "View Test" to open PDF of the test</li>
+                <li>Submit solutions as PDF files during active periods</li>
+                <li>Only PDF solutions will be accepted , you can use CAMSCANNER</li>
+                <li>You should see a message at top after submission, avoid multiple submissions</li>
+                <li>Once the exam timeframe ends, you won't be able to submit solutions or see the exam</li>
+              </ul>
+            </div>
+            <div>
+            </div>
           </div>
         </div>
       </div>
