@@ -26,7 +26,7 @@ const TestManagementPage = () => {
       title: "OL Physics T1",
       subject: "Physics",
       startTime: new Date("2025-07-25T17:40:00"),
-      endTime: new Date("2025-07-25T18:40:00"),
+      endTime: new Date("2025-07-25T18:55:00"),
       pdfPath: "/OL/phys1.pdf",
       submitted: false,
       submittedAt: null
