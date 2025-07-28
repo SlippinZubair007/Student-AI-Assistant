@@ -23,44 +23,55 @@ const TestManagementPage = () => {
   const [tests] = useState<Test[]>([
     {
       id: 1,
-      title: "OL Physics T1",
-      subject: "Physics",
-      startTime: new Date("2025-07-25T17:40:00"),
-      endTime: new Date("2025-07-25T18:55:00"),
-      pdfPath: "/OL/phys/olphyst1.pdf",
+      title: "Structure Charts - 25 Marks",
+      subject: "CS",
+      startTime: new Date("2025-08-25T18:20:00"),
+      endTime: new Date("2025-08-25T19:20:00"),
+      pdfPath: "/as/cs/ascst1.pdf",
       submitted: false,
       submittedAt: null
     },
     {
       id: 2,
-      title: "AS Physics T1",
-      subject: "Physics", 
-      startTime: new Date("2025-07-25T17:40:00"),
-      endTime: new Date("2025-07-25T18:55:00"),
-      pdfPath: "/AS/phys/asphyst1.pdf",
+      title: "Circular Motion - 50 Marks",
+      subject: "A2 Physics", 
+      startTime: new Date("2025-08-25T20:20:00"),
+      endTime: new Date("2025-08-25T21:40:00"),
+      pdfPath: "/A2/phys/a2physt1.pdf",
       submitted: false,
       submittedAt: null
     },
     {
       id: 3,
-      title: "OL CS T2",
-      subject: "Computer Science",
-      startTime: new Date("2025-07-25T18:40:00"),
-      endTime: new Date("2025-07-25T19:55:00"),
-      pdfPath: "/OL/CS/cst2.pdf",
+      title: "Circular Properties",
+      subject: "Maths",
+      startTime: new Date("2025-08-25T20:20:00"),
+      endTime: new Date("2025-08-25T21:40:00"),
+      pdfPath: "/OL/maths/olmathst2.pdf",
       submitted: false,
       submittedAt: null
     },
     {
         id: 4,
-        title: "OL English T1",
-        subject: "English",
-        startTime: new Date("2025-07-25T19:40:00"),
-        endTime: new Date("2025-07-25T20:55:00"),
-        pdfPath: "/OL/eng/engt1.pdf",
+        title: "Circular Properties MS",
+        subject: "Maths",
+        startTime: new Date("2025-08-25T21:40:00"),
+        endTime: new Date("2025-09-25T20:55:00"),
+        pdfPath: "/OL/maths/olmathsm1.pdf",
         submitted: false,
         submittedAt: null
-    }
+    },
+    {
+        id: 5,
+        title: "Circular Motion MS" ,
+        subject: "A2 Physics",
+        startTime: new Date("2025-08-25T21:40:00"),
+        endTime: new Date("2025-09-25T20:55:00"),
+        pdfPath: "/A2/phys/a2physm1.pdf",
+        submitted: false,
+        submittedAt: null
+    },
+
   ]);
 
   const [userRole, setUserRole] = useState('student');
