@@ -25,8 +25,8 @@ const TestManagementPage = () => {
       id: 1,
       title: "Structure Charts - 25 Marks",
       subject: "CS",
-      startTime: new Date("2025-07-28T18:20:00"),
-      endTime: new Date("2025-07-28T19:20:00"),
+      startTime: new Date("2025-08-25T18:20:00"),
+      endTime: new Date("2025-08-25T19:20:00"),
       pdfPath: "/as/cs/ascst1.pdf",
       submitted: false,
       submittedAt: null
@@ -35,8 +35,8 @@ const TestManagementPage = () => {
       id: 2,
       title: "Circular Motion - 50 Marks",
       subject: "A2 Physics", 
-      startTime: new Date("2025-07-28T20:20:00"),
-      endTime: new Date("2025-07-28T21:40:00"),
+      startTime: new Date("2025-08-25T20:20:00"),
+      endTime: new Date("2025-08-25T21:40:00"),
       pdfPath: "/A2/phys/a2physt1.pdf",
       submitted: false,
       submittedAt: null
@@ -45,15 +45,9 @@ const TestManagementPage = () => {
       id: 3,
       title: "Circular Properties",
       subject: "Maths",
-<<<<<<< HEAD
       startTime: new Date("2025-08-25T20:20:00"),
       endTime: new Date("2025-08-25T21:50:00"),
       pdfPath: "/OL/maths/olmathst1.pdf",
-=======
-      startTime: new Date("2025-07-28T20:20:00"),
-      endTime: new Date("2025-07-28T21:40:00"),
-      pdfPath: "/OL/maths/olmathst2.pdf",
->>>>>>> ab84f8a8b14800a23c8a341af1230e98d8b88f05
       submitted: false,
       submittedAt: null
     },
@@ -61,13 +55,8 @@ const TestManagementPage = () => {
         id: 4,
         title: "Circular Properties MS",
         subject: "Maths",
-<<<<<<< HEAD
         startTime: new Date("2025-08-25T21:50:00"),
         endTime: new Date("2025-09-25T20:55:00"),
-=======
-        startTime: new Date("2025-07-28T21:40:00"),
-        endTime: new Date("2025-09-28T20:55:00"),
->>>>>>> ab84f8a8b14800a23c8a341af1230e98d8b88f05
         pdfPath: "/OL/maths/olmathsm1.pdf",
         submitted: false,
         submittedAt: null
@@ -76,22 +65,12 @@ const TestManagementPage = () => {
         id: 5,
         title: "Circular Motion MS" ,
         subject: "A2 Physics",
-        startTime: new Date("2025-07-28T21:40:00"),
-        endTime: new Date("2025-09-28T20:55:00"),
+        startTime: new Date("2025-08-25T21:40:00"),
+        endTime: new Date("2025-09-25T20:55:00"),
         pdfPath: "/A2/phys/a2physm1.pdf",
         submitted: false,
         submittedAt: null
     },
-{
-        id: 6,
-        title: "Sample Video" ,
-        subject: "Sample",
-        startTime: new Date("2025-07-28T17:10:00"),
-        endTime: new Date("2025-09-28T20:55:00"),
-        pdfPath: "/AS/phys/asphyst1.pdf",
-        submitted: false,
-        submittedAt: null
-    }
 
   ]);
 
