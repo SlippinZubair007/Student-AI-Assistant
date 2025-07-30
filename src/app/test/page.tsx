@@ -23,11 +23,11 @@ const TestManagementPage = () => {
   const [tests] = useState<Test[]>([
     {
       id: 1,
-      title: "Structure Charts - 25 Marks",
+      title: "Python Recursion - 50 Marks",
       subject: "CS",
-      startTime: new Date("2025-07-28T18:20:00"),
-      endTime: new Date("2025-07-28T19:20:00"),
-      pdfPath: "/as/cs/ascst1.pdf",
+      startTime: new Date("2025-07-30T21:30:00"),
+      endTime: new Date("2025-07-28T22:50:00"),
+      pdfPath: "/as/cs/a2cst1.pdf",
       submitted: false,
       submittedAt: null
     },
