@@ -27,7 +27,7 @@ const TestManagementPage = () => {
       subject: "AS Maths",
       startTime: new Date("2025-08-01T16:40:00"),
       endTime: new Date("2025-08-01T17:40:00"),
-      pdfPath: "/AS/maths/a2mathst2t1.pdf",
+      pdfPath: "/A2/maths/a2mathst2t1.pdf",
       submitted: false,
       submittedAt: null
     },
